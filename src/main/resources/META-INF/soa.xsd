@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.mydubbo.com/schema/soa"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.mydubbo.com/schema/soa"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <!--注册中心配置信息-->
+    <xsd:element name="registry">
+        <xsd:complexType>
+            <!--注册中心使用那种注册协议类型 protocol :redis或zookeeper ...-->
+            <xsd:attribute name="protocol" type="xsd:string"></xsd:attribute>
+            <!--注册中心地址（ip）.-->
+            <xsd:attribute name="ip" type="xsd:string"></xsd:attribute>
+            <!--注册中心地址（port）.-->
+            <xsd:attribute name="port" type="xsd:int"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--调用生产者的服务使用的协议配置信息 类型：http、rmi、neety、mian-->
+    <xsd:element name="protocol">
+        <xsd:complexType>
+            <!--调用生产者的服务使用的协议配类型：http、rmi、neety、mian-->
+            <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+            <!--调用生产者的服务的ip-->
+            <xsd:attribute name="ip" type="xsd:string"></xsd:attribute>
+            <!--调用生产者的服务的port-->
+            <xsd:attribute name="port" type="xsd:string"></xsd:attribute>
+            <!--协议配类型：http时,请求路径.-->
+            <xsd:attribute name="contextpath" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--消费者的服务配置信息-->
+    <xsd:element name="reference">
+        <xsd:complexType>
+            <!--服务的id-->
+            <xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+            <!--服务的接口名称-->
+            <xsd:attribute name="interface" type="xsd:string"></xsd:attribute>
+            <!--使用那种负载均衡 类型：随机、轮询-->
+            <xsd:attribute name="loadBalance" type="xsd:string"></xsd:attribute>
+            <!--调用生产者的服务使用的协议配类型：http、rmi、neety、mian-->
+            <xsd:attribute name="protocol" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--生产者的服务配置信息-->
+    <xsd:element name="service">
+        <xsd:complexType>
+            <!--服务的接口名称-->
+            <xsd:attribute name="interface" type="xsd:string"></xsd:attribute>
+            <!--服务的接口所对应的实现类引用-->
+            <xsd:attribute name="ref" type="xsd:string"></xsd:attribute>
+            <!--服务提供的协议调用类型：http、rmi、neety、mian-->
+            <xsd:attribute name="protocol" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
