@@ -1,9 +1,10 @@
 package com.mydubbo.configbean;
 
+import com.mydubbo.invoke.Invoke;
+import com.mydubbo.invoke.impl.HttpInvoke;
+import com.mydubbo.invoke.impl.RMIInvoke;
 import com.mydubbo.proxy.InvokeInvocationHandler;
 import com.mydubbo.registry.util.RegistryUtil;
-import com.mydubbo.rpc.Invoke;
-import com.mydubbo.rpc.http.HttpInvoke;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -42,6 +43,7 @@ public class Reference extends BaseConfigBean implements InitializingBean, Facto
 
     static {
         invokeMap.put("http", new HttpInvoke());
+        invokeMap.put("rmi", new RMIInvoke());
     }
 
     /**
@@ -95,7 +97,7 @@ public class Reference extends BaseConfigBean implements InitializingBean, Facto
     @Override
     public void afterPropertiesSet() throws Exception {
         serviceList = RegistryUtil.getServiceFromRegistryCenter(this, applicationContext);
-        System.out.println(serviceList);
+        System.out.println(interf+"-----服务列表--------"+serviceList);
     }
 
     public String getInterf() {

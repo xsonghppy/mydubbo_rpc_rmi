@@ -1,9 +1,12 @@
 package com.mydubbo.configbean;
 
+import com.mydubbo.rpc.rmi.server.RmiUtil;
+import org.springframework.beans.factory.InitializingBean;
+
 /**
  * Created by xiangsong on 2018/2/3.
  */
-public class Protocol extends BaseConfigBean {
+public class Protocol extends BaseConfigBean implements InitializingBean {
 
     private String name;
     private String ip;
@@ -50,5 +53,13 @@ public class Protocol extends BaseConfigBean {
                 ", port='" + port + '\'' +
                 ", contextpath='" + contextpath + '\'' +
                 '}';
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (name.equalsIgnoreCase("rmi")) {
+            RmiUtil rmi = new RmiUtil();
+            rmi.startRmiServer(ip, port, "mydubboRMI");
+        }
     }
 }

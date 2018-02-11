@@ -49,10 +49,12 @@ public class Registry extends BaseConfigBean implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        //初始化redis
-        boolean flag = RedisPoolerUtil.initJdeisPool(ip, port, null);
-        if (!flag) {
-            throw new RuntimeException("<<注册中心>> redis服务信息初始化失败! redis信息：" + this);
+        if (protocol.equalsIgnoreCase("redis")) {
+            //初始化redis
+            boolean flag = RedisPoolerUtil.initJdeisPool(ip, port, null);
+            if (!flag) {
+                throw new RuntimeException("<<注册中心>> redis服务信息初始化失败! redis信息：" + this);
+            }
         }
     }
 }

@@ -10,5 +10,5 @@
     <mydubbo:registry protocol="redis" ip="192.168.152.128" port="6379"></mydubbo:registry>
     <mydubbo:protocol name="http" ip="127.0.0.1" port="8080"></mydubbo:protocol>
     <mydubbo:reference id="userServer" interface="com.mydubbo.servier.UserServer" protocol="http" loadBalance="round"></mydubbo:reference>
-    <mydubbo:reference id="userServer1" interface="com.mydubbo.servier.UserServer" protocol="http" loadBalance="random"></mydubbo:reference>
+    <mydubbo:reference id="userServer1" interface="com.mydubbo.servier.UserServer" protocol="rmi" loadBalance="random"></mydubbo:reference>
 </beans>

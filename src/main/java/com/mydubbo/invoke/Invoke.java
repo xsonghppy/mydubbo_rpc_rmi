@@ -1,4 +1,4 @@
-package com.mydubbo.rpc;
+package com.mydubbo.invoke;
 
 
 import com.mydubbo.proxy.Invocation;

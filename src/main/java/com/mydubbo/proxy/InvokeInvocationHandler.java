@@ -1,7 +1,7 @@
 package com.mydubbo.proxy;
 
 import com.mydubbo.configbean.Reference;
-import com.mydubbo.rpc.Invoke;
+import com.mydubbo.invoke.Invoke;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
