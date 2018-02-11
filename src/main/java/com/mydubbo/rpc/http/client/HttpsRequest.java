@@ -1,4 +1,4 @@
-package com.mydubbo.http.sender.httpclient;
+package com.mydubbo.rpc.http.client;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.IOUtils;
@@ -179,7 +179,6 @@ public final class HttpsRequest implements Closeable {
         } catch (Throwable e) {
             String errMsg = String.format("对%s发起请求失败\n!其中%s编码的json内容：%s", url, charset.name(), postJsonStr);
             logger.error(errMsg, e);
-            throw new HttpsRequestException(errMsg, e);
         } finally {
             if (httpResponse != null) {
                 try {
@@ -220,7 +219,6 @@ public final class HttpsRequest implements Closeable {
         } catch (Throwable e) {
             String errMsg = String.format("对%s发起请求失败\n!编码为:%s", url, charset.name());
             logger.error(errMsg, e);
-            throw new HttpsRequestException(errMsg, e);
         } finally {
             if (httpResponse != null) {
                 try {
@@ -284,7 +282,7 @@ public final class HttpsRequest implements Closeable {
             }).build();
             sslSocketFactory = new SSLConnectionSocketFactory(sslContext);
         } catch (Throwable e) {
-            throw new HttpsRequestException("初始化全信任SSLSocketFactory失败!", e);
+            logger.error("初始化全信任SSLSocketFactory失败!", e);
         }
         return sslSocketFactory;
     }
@@ -306,7 +304,7 @@ public final class HttpsRequest implements Closeable {
                     SSLConnectionSocketFactory.getDefaultHostnameVerifier());
 
         } catch (Throwable e) {
-            throw new HttpsRequestException("初始化证书,SSLSocketFactory失败!信息:" + certificateInfo.toString(), e);
+            logger.error("初始化证书,SSLSocketFactory失败!信息:" + certificateInfo.toString(), e);
         } finally {
             IOUtils.closeQuietly(is);
         }

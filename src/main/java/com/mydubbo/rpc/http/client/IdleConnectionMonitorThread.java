@@ -1,4 +1,4 @@
-package com.mydubbo.http.sender.httpclient;
+package com.mydubbo.rpc.http.client;
 
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.slf4j.Logger;
